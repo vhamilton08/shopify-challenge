@@ -1,23 +1,46 @@
-import logo from './logo.svg';
+import { useState } from 'react';
+import Movies from './components/Movies';
+import Search from './components/Search';
+import axios from 'axios';
 import './App.css';
 
-function App() {
+const App = () => {
+  const [skerp , setSkerp] = useState('')
+  const [movie, setMovie] = useState([])
+  // const [selected, setSelected] = useState({})
+  const apiurl = `http://www.omdbapi.com/?s=${skerp}&apikey=e66ea6a9`
+
+  const inputHandle = (event) => {
+    setSkerp(event.target.value)
+
+  }
+
+ 
+
+  const search = (event) => {
+    if(event.key === "Enter") {
+      axios(apiurl)
+      // .then(res => console.log(res.data))
+      .then( res => setMovie(res.data.Search))
+    
+    }
+  }
+
+ 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header>
+        <h1>THE SHOPPIES</h1>
       </header>
+      <div>
+        <Search inputHandle={inputHandle} search={search}/>
+        {movie.map((el, index) => {
+          return (
+            <Movies key={index} el={el}/>
+          )
+        })}
+        {/* <Movies movie={movie}/> */}
+      </div>
     </div>
   );
 }
