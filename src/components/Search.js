@@ -1,4 +1,5 @@
 import React from 'react';
+import './Search.css';
 
 const Search = ({ inputHandle, search }) => {
     return (
@@ -8,7 +9,6 @@ const Search = ({ inputHandle, search }) => {
                 <input 
                     id="movieTitle" 
                     type="text" 
-                    // value={inputv} 
                     onChange={inputHandle}
                     onKeyPress={search}  
                     placeholder="Search For A Movie"/>

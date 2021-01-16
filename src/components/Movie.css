@@ -1,0 +1,13 @@
+.movie-Container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 310px;
+    background-color: blue;
+    padding: 10px;
+   
+}
+.movie-Container > img {
+    width: 175px;
+    height: 225px;
+}
